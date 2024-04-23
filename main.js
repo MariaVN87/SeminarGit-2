@@ -1,26 +1,26 @@
-(function(){
-    let countWords = function(text) {
+(function () {
+    let countWords = function (text) {
         let wordRegex = /[a-zA-Zа-яА-Я0-9]/;
         let count = 0;
         let tokens = text.split(/\s+/);
-        for(i in tokens) {
-            if(tokens[i].match(wordRegex)) {
+        for (i in tokens) {
+            if (tokens[i].match(wordRegex)) {
                 count++;
             }
         }
         return count;
     }
 
-    let countSpaces = function(text) {
+    let countSpaces = function (text) {
         let matches = text.matchAll(/\s/g);
         let count = 0;
-        for(let match of matches) {
+        for (let match of matches) {
             count++;
         }
         return count;
     }
 
-    let changeButtonsStatus = function(enable) {
+    let changeButtonsStatus = function (enable) {
         let countButton = document.querySelector('#count-button');
         let resetButton = document.querySelector('#reset-button');
         if (enable) {
@@ -32,13 +32,13 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', function(){
+    document.addEventListener('DOMContentLoaded', function () {
         let textArea = document.querySelector('#text');
         let result = document.querySelector('#result');
         let countButton = document.querySelector('#count-button');
         let resetButton = document.querySelector('#reset-button');
 
-        countButton.addEventListener('click', function(){
+        countButton.addEventListener('click', function () {
             let text = textArea.value;
             let wordsCount = countWords(text);
             let withoutSpaces = text.length - countSpaces(text);
@@ -48,11 +48,11 @@
                 '<b>Количество слов:</b> ' + wordsCount;
         });
 
-        textArea.addEventListener('keyup', function(){
+        textArea.addEventListener('keyup', function () {
             changeButtonsStatus(textArea.value.length > 0);
         });
 
-        resetButton.addEventListener('click', function(){
+        resetButton.addEventListener('click', function () {
             textArea.value = '';
             changeButtonsStatus(false);
         });
